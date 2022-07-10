@@ -140,26 +140,26 @@ MAX_PAGE = 100
 # 登录后用户 cookie
 USER_COOKIE = \
     {
-        "shshshfpa":    "a1cda75f-6ce4-5dce-51b9-5318c4b90acf-1631343865",
-        "shshshfpb":    "uVVKAQCQXc8kH5UrMM0c8hQ",
+        "shshshfpa":    "a1631343865",
+        "shshshfpb":    "UrMM0c8hQ",
         "areaId":       "15",
         "ipLoc-djd":    "15-1213-3411-0",
-        "unpl":         "V2_ZzNtbUNSEEF9CBIHe0xfBGIGRVUSBBQdd1tOUChJD1JuV0VYclRCFnUUR1xnGVwUZwcZXUtcQRdFCEdkexhdBGUHFF1EVXMlRQtGZHopXAJlAxBYQF5EEXcLQVd6EVsGZQsbXUZncxV9DHZUehhdBWUAGl5EVUIlLFgbEj8pVA1uCxdbSlFFJXQ4R2Qtd1wEZgIRXkJTShM4CEFWextZB24EFl9BUEAUfQ9FVnMQXAFXAiJe",
-        "__jdv":        "122270672|kong|t_1000357173_|tuiguang|04be91eb1d2044f9abf93b95babf8ef4|1631344695039",
-        "pinId":        "Zoqc-3DpLhPpUC1HhyM6AA",
-        "pin":          "%E6%A2%A8%E8%8A%B1%E8%AF%97%E9%9B%A8%E9%A3%8E",
-        "unick":        "%E6%A2%A8%E8%8A%B1%E8%AF%97%E9%9B%A8%E9%A3%8E",
-        "_tp":          "AgDW/ibuvNVQEWcf6aqBPJYedn7kOB1+s3rSnCANB+oWFs1vqUmYWGERo7yt+eBF",
-        "_pst":         "%E6%A2%A8%E8%8A%B1%E8%AF%97%E9%9B%A8%E9%A3%8E",
-        "user-key":     "687641af-007d-4140-b23b-7915fae009bc",
-        "PCSYCityID":   "CN_330000_330100_330108",
-        "ceshi3.com":   "000",
-        "__jdc":        "122270672",
-        "wlfstk_smdl":  "6pqy8azyazl2ehgnrw6riewzv8mvem9l",
-        "TrackID":      "1tRmLG2RIpZF1pMQYY12SImfyt8FDPSlGGLrU7oXTuTQ3OEVEqCs7PfEDRvqclrIOldqna6QEQ5hcWwi0VR69DW-TZWnAorzklJmCknGl4smzfMKE1Fs_IW6JDuqW8aEM",
-        "shshshfp":     "c96598184b25001a6e244ae612e8b4b5",
-        "__jda":        "122270672.16313438653262096239815.1631343865.1632034693.1632046111.23",
-        "thor":         "C924259956DF3ADF8F9DAB004CCBDDFE80477BF591FFFB9FE23B5F3381ED322C4D7C85D916240B0F92ACC740280DAE3066ECA1AFDF7F1596AC0299A274347EA07DFA1F92844E64E9E22FDD0F985875363A4CF470EBDA35911828C1D20EEA359CC9A1BA716B5690BD8E7AA3C5E164695EAC459647834D88EDEAD4318A290577B9"
+        "unpl":         "Je",
+        "__jdv":        "039",
+        "pinId":        "A",
+        "pin":          "%8E",
+        "unick":        "%E",
+        "_tp":          "AgBF",
+        "_pst":         "%%8E",
+        "user-key":     "68c",
+        "PCSYCityID":   "CN_",
+        "ceshi3.com":   "0",
+        "__jdc":        "120672",
+        "wlfstk_smdl":  "6pql",
+        "TrackID":      "GM",
+        "shshshfp":     "c",
+        "__jda":        "12211.23",
+        "thor":         "C92"
     }
 
 # 代理池
