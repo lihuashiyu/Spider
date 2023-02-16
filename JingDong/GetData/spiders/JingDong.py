@@ -46,10 +46,10 @@ class JdBraSpider(Spider):
         for keyword in self.settings["KEYWORD_LIST"]:                          # 遍历所有关键词
             compare = CompareFile()
             sku_id_list = compare.compare()
-            logging.info(f"获取的商品 ID 为：======> \n\t{sku_id_list}")      # 记录所有的 sku-id 日志
+            logging.info(f"获取的商品 ID 为：======> \n\t{sku_id_list}")      # 记录所有的 sku-id Logs
             print(f"总共获取商品的 ID 数目为：{len(sku_id_list)}")
 
-            for sku_id in sku_id_list:                                         # 遍历每个 sku-id 获取数据
+            for sku_id in sku_id_list:                                         # 遍历每个 sku-id GetData
                 url = self.product_url + sku_id + ".html"                      # 拼接 sku-id 得到访问 url
                 # 访问商品详情页：dont_filter = True  不去重
                 response = Request(url=url, callback=self.parse, dont_filter=True, meta=self.meta,

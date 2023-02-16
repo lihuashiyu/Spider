@@ -40,7 +40,7 @@ class GetdataSpiderMiddleware:
         return None
 
     def process_spider_output(self, response, result, spider):
-        # Called with the results returned from the Spider, after
+        # Called with the results returned from the spiders, after
         # it has processed the response.
 
         # Must return an iterable of Request, or item objects.
@@ -64,7 +64,7 @@ class GetdataSpiderMiddleware:
             yield r
 
     def spider_opened(self, spider):
-        spider.logger.info('Spider opened: %s' % spider.name)
+        spider.logger.info('spiders opened: %s' % spider.name)
 
 
 class GetdataDownloaderMiddleware:
@@ -111,7 +111,7 @@ class GetdataDownloaderMiddleware:
         pass
 
     def spider_opened(self, spider):
-        spider.logger.info('Spider opened: %s' % spider.name)
+        spider.logger.info('spiders opened: %s' % spider.name)
 
 """
 # 设置 Proxy

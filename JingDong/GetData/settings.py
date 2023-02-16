@@ -115,7 +115,7 @@ ITEM_PIPELINES = \
 # SCHEDULER = "scrapy_redis.scheduler.Scheduler"
 
 # 配置日志级别：CRITICAL（严重错误）、ERROR（一般错误）、WARNING（警告信息）INFO（一般信息）、DEBUG（调试信息）
-LOG_LEVEL = "DEBUG"
+LOG_LEVEL = "INFO"
 # 是否启用 logging（默认: True）
 LOG_ENABLED = True
 # 日志编码格式（默认: utf-8）
