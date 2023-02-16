@@ -188,14 +188,14 @@ MYSQL_DB_NAME = "test"
 MYSQL_CONNECT_CHARSET = "utf8"
 
 # 插入 Mysql 数据库所用的 sql 语句
-PRODUCT_SQL = "insert into ods_jingdong_product(sku_id, store, product_price, fans_price, " \
-              "guide_price, original_price, brand, description, url, comment_count, " \
-              "favorable_rate, comment_target, show_picture_count, show_video_count, " \
-              "add_comment_count, better_comment_count, general_comment_count, bed_comment_count) " \
-              "values(%s, %s,%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s);"
+PRODUCT_SQL = " insert into ods_jingdong_product(sku_id, store, product_price, fans_price, " \
+              " guide_price, original_price, brand, description, url, comment_count, " \
+              " favorable_rate, comment_target, show_picture_count, show_video_count, " \
+              " add_comment_count, better_comment_count, general_comment_count, bed_comment_count) " \
+              " values(%s, %s,%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s);"
 
-COMMENT_SQL = "insert into ods_jingdong_comment(sku_id, user_id, user_guid, user_name, " \
-              "user_head_url, user_level, score, buy_time, comment_time, item_description, " \
-              "content, imagine_count, imagine_info, video_count, video_info, like_count, " \
-              "reply_count, add_comment_content) " \
-              "values(%s, %s,%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s);"
+COMMENT_SQL = " insert into ods_jingdong_comment(sku_id, user_id, user_guid, user_name, " \
+              " user_head_url, user_level, score, buy_time, comment_time, item_description, " \
+              " content, imagine_count, imagine_info, video_count, video_info, like_count, " \
+              " reply_count, add_comment_content) " \
+              " values(%s, %s,%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s);"

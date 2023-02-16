@@ -27,7 +27,7 @@ from scrapy.utils.project import get_project_settings
 from ..items import ProductItem, CommentItem
 
 
-class JdBraSpider(Spider):
+class JingDongSpider(Spider):
     name = "JingDong"                                                          # Scrapy Name
     allowed_domains = ["jd.com"]                                               # 作用域
 
