@@ -15,7 +15,6 @@
 ================================================================================
 """
 
-
 import pymysql
 import logging
 from .items import ProductItem, CommentItem
@@ -28,7 +27,7 @@ class WriteDataPipeline:
     def __init__(self, product_path, comment_path):                            # 初始化
         self.product_path = product_path                                       # 保存商品的文件路径
         self.comment_path = comment_path                                       # 保存用户评价的文件路径
-
+        
     # 获取配置文件中的文件路径
     @classmethod
     def from_crawler(cls, crawler):                                            # 使用 scrapy 自带框架
@@ -36,12 +35,12 @@ class WriteDataPipeline:
                 product_path=crawler.settings.get("PRODUCT_PATH"),             # 从 settings 中获取商品描述的文件路径
                 comment_path=crawler.settings.get("COMMENT_PATH"),             # 从 settings 中获取用户评价的文件路径
         )
-
+        
     # 打开文件写入
     def open_spider(self, spider):
         self.product_file = open(file=self.product_path, mode="w", encoding="utf-8")
         self.comment_file = open(file=self.comment_path, mode="w", encoding="utf-8")
-
+        
     # 写入文件
     def process_item(self, item, spider):
         if isinstance(item, ProductItem):                                      # 若是商品描述实体类
@@ -52,13 +51,13 @@ class WriteDataPipeline:
             logging.info(f"不存在此{item}")                                    # 则记录日志
         logging.info(f"商品 {item['sku_id']} 的数据已经写入文件 ...... ")
         return item
-
+        
     # 关闭写入文件
     def close_spider(self, spider):
         self.product_file.close()
         self.comment_file.close()
-
-
+        
+        
 # 将获取的数据写入到 Mysql 数据库
 class MysqlPipeline:
     # 初始化数据库连接参数：数据库地址、端口号、用户名、密码、数据库名、连接字符集
@@ -69,7 +68,7 @@ class MysqlPipeline:
         self.password = password                                               # Mysql 用户对应的密码
         self.database = database                                               # Mysql 数据库名
         self.charset = charset                                                 # Mysql 连接字符集
-
+        
     # 获取配置文件中的参数
     @classmethod
     def from_crawler(cls, crawler):                                            # 从 settings Mysql 参数
@@ -81,14 +80,14 @@ class MysqlPipeline:
             database=crawler.settings.get("MYSQL_DB_NAME"),                    # 从 settings Mysql 数据库名
             charset=crawler.settings.get("MYSQL_CONNECT_CHARSET"),             # 从 settings Mysql 连接字符集
         )
-
+        
     # 建立连接
     def open_spider(self, spider):
         self.connect = pymysql.connect(host=self.host, port=self.port, user=self.user,
                                        password=self.password, db=self.database,
                                        charset=self.charset)                   # 建立 Mysql 连接
         self.cursor = self.connect.cursor()                                    # 获取游标，用于执行 sql 
-
+        
     # 写入数据
     def process_item(self, item, spider):
         settings = get_project_settings()                                      # 实例化 settings
@@ -121,23 +120,23 @@ class MysqlPipeline:
             self.cursor.execute(comment_sql, data_tuple)                       # 执行 sql
         else:                                                                  # 若都不是
             logging.info(f"不存在此{item}")                                    # 则记录日志
-
+            
         logging.info(f"商品 {item['sku_id']} 的数据已经写 Mysql 数据库 ...... ")
         self.connect.commit()                                                  # 提交运行
         return item
-
+    
     # 关闭连接
     def close_spider(self, spider):
         self.cursor.close()
         self.connect.close()
-
-
+        
+        
 # 将字典中的的参数进行转换
 class DictToString:
     # 初始化参数
     def __init__(self, object_dict):
         self.object_dict = object_dict
-    
+        
     # 将字典中的的参数进行转换
     def transform(self):
         result = {}

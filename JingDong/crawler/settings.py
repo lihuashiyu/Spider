@@ -18,11 +18,11 @@
 import datetime
 
 # 爬虫项目名称
-BOT_NAME = "GetData"
+BOT_NAME = "crawler"
 
 # 项目模块
-SPIDER_MODULES = ["GetData.spiders"]
-NEWSPIDER_MODULE = "GetData.spiders"
+SPIDER_MODULES = ["crawler.spiders"]
+NEWSPIDER_MODULE = "crawler.spiders"
 
 # 是否遵循 robots 协议
 ROBOTSTXT_OBEY = False
@@ -68,13 +68,13 @@ USER_META = \
     }
 
 # 启用或禁用爬行器中间件
-# SPIDER_MIDDLEWARES = {"GetData.middlewares.GetdataSpiderMiddleware": 543, }
+# SPIDER_MIDDLEWARES = {"crawler.middlewares.SpiderMiddleware": 543, }
 
 # 启用或禁用下载器中间件
 # DOWNLOADER_MIDDLEWARES = \
 #     {
-#         "GetData.middlewares.GetdataDownloaderMiddleware": 543,
-#         "GetData.middlewares.ProxyMiddleware": 543,
+#         "crawler.middlewares.DownloaderMiddleware": 543,
+#         "crawler.middlewares.ProxyMiddleware": 543,
 #     }
 
 # 启用或禁用下载器中间件扩展
@@ -82,10 +82,10 @@ USER_META = \
 # 配置项管道
 ITEM_PIPELINES = \
     {
-        "GetData.pipelines.WriteDataPipeline": 300,
-        # "GetData.pipelines.CommentPipeline": 301,
+        "crawler.pipelines.WriteDataPipeline": 300,
+        # "crawler.pipelines.CommentPipeline": 301,
         # 开启 Mysql 管道，把数据存到 Mysql 数据库
-        "GetData.pipelines.MysqlPipeline":     302,
+        "crawler.pipelines.MysqlPipeline":     302,
     }
 
 # 启用和配置 AutoThrottle 扩展(默认禁用)
