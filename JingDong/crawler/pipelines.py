@@ -83,9 +83,8 @@ class MysqlPipeline:
         
     # 建立连接
     def open_spider(self, spider):
-        self.connect = pymysql.connect(host=self.host, port=self.port, user=self.user,
-                                       password=self.password, db=self.database,
-                                       charset=self.charset)                   # 建立 Mysql 连接
+        self.connect = pymysql.connect(host=self.host, port=self.port, user=self.user, password=self.password,
+                                       db=self.database, charset=self.charset) # 建立 Mysql 连接
         self.cursor = self.connect.cursor()                                    # 获取游标，用于执行 sql 
         
     # 写入数据
@@ -96,13 +95,14 @@ class MysqlPipeline:
             transform = DictToString(item)                                     # 实例化字典的参数转换类
             product = transform.transform()                                    # 将字典中参数进行转换
             # 获取商品描述信息相关参数
-            data_tuple = (product["sku_id"], product["store"], product["product_price"],
-                          product["fans_price"], product["guide_price"],
-                          product["original_price"], product["brand"],
-                          product["description"], product["url"], product["comment_count_list"],
-                          product["favorable_rate"], product["comment_target_list"],
-                          product["show_picture_count"], product["show_video_count"],
-                          product["add_comment_count"], product["better_comment_count"],
+            data_tuple = (product["sku_id"],                product["store"],
+                          product["product_price"],         product["fans_price"],
+                          product["guide_price"],           product["original_price"],
+                          product["brand"],                 product["description"],
+                          product["url"],                   product["comment_count_list"],
+                          product["favorable_rate"],        product["comment_target_list"],
+                          product["show_picture_count"],    product["show_video_count"],
+                          product["add_comment_count"],     product["better_comment_count"],
                           product["general_comment_count"], product["bed_comment_count"])
             self.cursor.execute(product_sql, data_tuple)                       # 执行 sql
         elif isinstance(item, CommentItem):
@@ -110,13 +110,12 @@ class MysqlPipeline:
             transform = DictToString(item)                                     # 实例化字典的参数转换类
             comment = transform.transform()                                    # 将字典中参数进行转换
             # 获取用户评价信息相关参数
-            data_tuple = (comment["sku_id"], comment["user_id"], comment["user_guid"],
-                          comment["user_name"], comment["user_head_url"], comment["user_level"],
-                          comment["score"], comment["buy_time"], comment["comment_time"],
-                          comment["item_description"], comment["content"], comment["imagine_count"],
-                          comment["imagine_info_list"], comment["video_count"],
-                          comment["video_info_list"], comment["like_count"],
-                          comment["reply_count"], comment["add_comment_content"])
+            data_tuple = (comment["sku_id"],            comment["user_id"],       comment["user_guid"],
+                          comment["user_name"],         comment["user_head_url"], comment["user_level"],
+                          comment["score"],             comment["buy_time"],      comment["comment_time"],
+                          comment["item_description"],  comment["content"],       comment["imagine_count"],
+                          comment["imagine_info_list"], comment["video_count"],   comment["video_info_list"],
+                          comment["like_count"],        comment["reply_count"],   comment["add_comment_content"])
             self.cursor.execute(comment_sql, data_tuple)                       # 执行 sql
         else:                                                                  # 若都不是
             logging.info(f"不存在此{item}")                                    # 则记录日志

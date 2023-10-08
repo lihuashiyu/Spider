@@ -43,10 +43,10 @@ class JingDongSpider(Spider):
     
     # 使用搜索词获取搜索页面结果
     def start_requests(self):                                                  # 商品 ID：sku_id
-        for keyword in self.settings["KEYWORD_LIST"]:                          # 遍历所有关键词
+        for _ in self.settings["KEYWORD_LIST"]:                                # 遍历所有关键词
             compare = CompareFile()
             sku_id_list = compare.compare()
-            logging.info(f"获取的商品 ID 为：======> \n\t{sku_id_list}")      # 记录所有的 sku-id Logs
+            logging.info(f"获取的商品 ID 为：======> \n\t{sku_id_list}")       # 记录所有的 sku-id Logs
             print(f"总共获取商品的 ID 数目为：{len(sku_id_list)}")
             
             for sku_id in sku_id_list:                                         # 遍历每个 sku-id crawler
@@ -257,12 +257,14 @@ class GetItemList:
         
 class CompareFile:
     def __init__(self):
-        self.path = "./sku-id.csv"
-        self.host = "localhost"
-        self.port = 3306
-        self.user = "root"
-        self.pass_word = "111111"
-        self.data_base = "test"
+        settings = get_project_settings()                                      # 实例化
+        self.path = settings["FILE_PATH"]
+        self.host = settings["MYSQL_HOST"]
+        self.port = settings["MYSQL_PORT"]
+        self.user = settings["MYSQL_USER"]
+        self.pass_word = settings["MYSQL_PASSWORD"]
+        self.data_base = settings["MYSQL_DB_NAME"]
+        self.charset = settings["MYSQL_CONNECT_CHARSET"]
         
     def file_reader(self):
         data_list = []
@@ -274,8 +276,7 @@ class CompareFile:
         
     def mysql_reader(self):
         connect = pymysql.connect(host=self.host, port=self.port, user=self.user,
-                                  password=self.pass_word, db=self.data_base, )
-        
+                                  password=self.pass_word, db=self.data_base, charset=self.charset)
         cursor = connect.cursor()
         sql = "select sku_id from ods_jingdong_product"
         cursor.execute(query=sql)

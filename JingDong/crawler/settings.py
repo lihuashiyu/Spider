@@ -15,7 +15,7 @@
 ================================================================================
 """
 
-import datetime
+from datetime import datetime
 
 # 爬虫项目名称
 BOT_NAME = "crawler"
@@ -122,13 +122,14 @@ LOG_ENABLED = True
 LOG_ENCODING = "utf-8"
 # 是否程序内的所有 print 将会被输送到日志文件内（默认：False）
 LOG_STDOUT = False
+
 # 配置日志文件名和位置（默认: None）
-time = datetime.datetime.now()
-LOG_FILE = "../../Other/Log/JingDong-{}-{}-{}.log".format(time.year, time.month, time.day)
+time = datetime.now()
+LOG_FILE = "../data/JingDong-{}-{}-{}.log".format(time.year, time.month, time.day)
 
 # 数据写入本地路径
-PRODUCT_PATH = "../../Other/Data/product-{}-{}-{}-{}.json".format(time.month, time.day, time.hour, time.minute)
-COMMENT_PATH = "../../Other/Data/comment-{}-{}-{}-{}.json".format(time.month, time.day, time.hour, time.minute)
+PRODUCT_PATH = "../data/product-{}-{}-{}-{}.json".format(time.month, time.day, time.hour, time.minute)
+COMMENT_PATH = "../data/comment-{}-{}-{}-{}.json".format(time.month, time.day, time.hour, time.minute)
 
 # sqlite 配置
 # SQLITE_DB_NAME = "scrapy.db"
@@ -137,6 +138,7 @@ COMMENT_PATH = "../../Other/Data/comment-{}-{}-{}-{}.json".format(time.month, ti
 KEYWORD_LIST = ["手机"]
 # 查询的页码
 MAX_PAGE = 100
+
 # 登录后用户 cookie
 USER_COOKIE = \
     {
@@ -178,6 +180,9 @@ PRICE_URL = "https://item-soa.jd.com/getWareBusiness?skuId="
 # 用户对商品评论接口 url
 COMMENT_URL = "https://club.jd.com/comment/productPageComments.action?callback=fetchJSON_comment98" \
               "&productId={}&score=0&sortType=6&page={}&pageSize=10&isShadowSku=0&fold=1"
+
+# 文件存储位置
+FILE_PATH = "../data/sku-id.csv"
 
 # Mysql 配置
 MYSQL_HOST = "127.0.0.1"
