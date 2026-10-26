@@ -65,5 +65,5 @@
     cd Spider/JavRanking/
      
     # 然后： 
-    scrapy crawl JingDong
+    scrapy crawl rank-info
 ```

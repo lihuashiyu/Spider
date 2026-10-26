@@ -272,24 +272,24 @@ class PageParser:
             # 获取磁力链接名称和 url
             item_header = magnet_selector.css(query="div[class='magnet-item__header']")
             magnet.name = item_header.css(query="a::text").get(default="").strip()
-            magnet.url = magnet_selector.css("a::attr(href)").get(default="").strip()
+            magnet.url = item_header.css("a::attr(href)").get(default="").strip()
             
-            # 获取磁力链接大小和清晰度
-            size_text_list = magnet_selector.css(query="span.magnet-tag--size::text").getall()
-            if len(size_text_list) == 1:
-                magnet.size = size_text_list[0].strip() if len(size_text_list) > 0 else "0GB"
-            elif len(size_text_list) > 1:
-                magnet.size = size_text_list[0].strip() if len(size_text_list) > 0 else "0GB"
-                magnet.clarity = size_text_list[1].strip() if len(size_text_list) > 1 else ""
+            # 获取磁力链接大小
+            size = magnet_selector.css(query="span[class='magnet-tag magnet-tag--size']::text").get(default="0GB")
+            magnet.size = size.strip()
             
-            # 获取磁力链接字幕信息
-            magnet_tag = magnet_selector.css(query="span[class='magnet-tag']::text").get(default="")
-            magnet.is_subtitle = 1 if magnet_tag else 0
+            # 视频清晰度和字幕
+            other_list = magnet_selector.css(query="span[class='magnet-tag']::text").getall()
+            if len(other_list) == 1:
+                magnet.clarity = other_list[0].strip()               # 设置清晰度
+            elif len(other_list) > 1:
+                magnet.clarity = other_list[0].strip()               # 设置清晰度
+                magnet.is_subtitle = 1                               # 设置字幕标志
             
-            # 获取磁力链接下载地址
-            magnet.url = magnet_selector.css(query="div[class='magnet-item__actions'] a::attr(href)").get(default="")
+            # 获取 picpak 链接地址
+            magnet.picpak_url = magnet_selector.css(query="div[class='magnet-item__actions'] a::attr(href)").get(default="")
             magnet_list.append(magnet)
-        
+            
         logger.info(f"共获取到 {len(magnet_list)} 条磁力链接")
         return magnet_list
     
