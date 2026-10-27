@@ -119,3 +119,4 @@ INSERT_RANK_INFO = "insert into ods_jav_ranking (code, url, description, station
             "values(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
 
 # ======================================== 其他配置 ======================================== #
+MAX_PAGE = 15927                                           # 最大页数

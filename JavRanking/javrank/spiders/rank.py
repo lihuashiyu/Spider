@@ -27,7 +27,7 @@ from ..utils import logger
 from ..items import TypeRanking, ThumbnailPictureUrl, VideoMagnetUrl, VideoInfoItem, VideoCommentItem, Actor
 
 
-# 爬虫类
+# 排行榜爬虫
 class RankInfoSpider(Spider):
     name = "rank-info"                                               # 爬虫名称
     allowed_domains = ["javranking.cc"]                              # 允许的域名，多个用逗号分隔
@@ -75,7 +75,37 @@ class RankInfoSpider(Spider):
         # 获取视频信息
         video_info = PageParser.get_video_info(html=response.text, url=response.url)
         yield video_info
-        
+
+
+# 视频信息爬虫
+class VideoInfoSpider(Spider):
+    name = "video-info"                                              # 爬虫名称
+    allowed_domains = ["javranking.cc"]                              # 允许的域名，多个用逗号分隔
+    start_urls = ["https://javranking.cc/"]                          # 爬取的基本 url
+    
+    settings = get_project_settings()                                # 实例化设置
+    meta = settings.get("USER_META")                                 # 匹配数据设置
+    headers = settings.get("DEFAULT_REQUEST_HEADERS")                # 请求头
+    max_page_id = settings.get(name="MAX_PAGE", default=15927)       # 最大页码
+    
+    def parse(self, response: Response):
+        for page_id in range(1, self.max_page_id + 1):
+            url = f"{self.start_urls[0]}/zh-hans/videos/{page_id}/"  # 拼接分页 url
+            try:
+                response = Request(url=url, callback=self.parse_video_info, dont_filter=True,
+                                   meta=self.meta, headers=self.headers)
+                yield response
+            except Exception as e:
+                logger.error(f"获取 {url} 的视频信息页面失败 ......")
+            
+    # 解析视频信息页面
+    def parse_video_info(self, response: Response):
+        # 获取视频信息
+        video_info = PageParser.get_video_info(html=response.text, url=response.url)
+        logger.info(f"获取 {response.url} 的视频信息 ......")
+        yield video_info
+    
+
 # 解析类
 class PageParser:
     RANK_PATTERN = compile(r"/rankings/([^/?#]+)/?$")                # 排行榜详情页链接特征
